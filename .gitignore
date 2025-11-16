@@ -1,0 +1,10 @@
+# Build output
+*.o
+*.bin
+*.iso
+
+# GRUB ISO folders
+iso/
+
+# macOS nonsense
+.DS_Store
