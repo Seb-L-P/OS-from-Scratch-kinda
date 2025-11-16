@@ -6,17 +6,23 @@ LD=x86_64-elf-ld
 
 CFLAGS="-m32 -ffreestanding -fno-stack-protector -fno-pic -Iinclude"
 
-# Assemble the entry stub + multiboot header
+# Assemble entry stub + multiboot header
 $CC -m32 -ffreestanding -c boot/kernel.s -o boot.o
 
-# Compile the C files
+# Assemble interrupts (idt_flush, isr0)
+$CC -m32 -ffreestanding -c boot/interrupts.s -o interrupts.o
+
+# Compile C files
 $CC $CFLAGS -c src/kernel.c -o kernel.o
 $CC $CFLAGS -c src/vga.c -o vga.o
+$CC $CFLAGS -c src/idt.c -o idt.o
+$CC $CFLAGS -c src/isr.c -o isr.o
 
-# Link the kernel as a 32-bit ELF
-$LD -m elf_i386 -T linker.ld -o kernel.bin boot.o kernel.o vga.o
+# Link kernel
+$LD -m elf_i386 -T linker.ld -o kernel.bin \
+    boot.o interrupts.o kernel.o vga.o idt.o isr.o
 
-# Prepare GRUB ISO structure
+# Prepare ISO
 mkdir -p iso/boot/grub
 cp kernel.bin iso/boot/
 
