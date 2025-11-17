@@ -34,7 +34,25 @@
     .global isr30
     .global isr31
 
+    .global irq0
+    .global irq1
+    .global irq2
+    .global irq3
+    .global irq4
+    .global irq5
+    .global irq6
+    .global irq7
+    .global irq8
+    .global irq9
+    .global irq10
+    .global irq11
+    .global irq12
+    .global irq13
+    .global irq14
+    .global irq15
+
     .extern isr_handler
+    .extern irq_handler
 
 # void idt_flush(uint32_t idt_ptr_addr);
 idt_flush:
@@ -271,3 +289,132 @@ isr31:
 .hang:
     hlt
     jmp .hang
+
+
+irq0:
+    cli
+    pushl $0
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq1:
+    cli
+    pushl $1
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq2:
+    cli
+    pushl $2
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq3:
+    cli
+    pushl $3
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq4:
+    cli
+    pushl $4
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq5:
+    cli
+    pushl $5
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq6:
+    cli
+    pushl $6
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq7:
+    cli
+    pushl $7
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq8:
+    cli
+    pushl $8
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq9:
+    cli
+    pushl $9
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq10:
+    cli
+    pushl $10
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq11:
+    cli
+    pushl $11
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq12:
+    cli
+    pushl $12
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq13:
+    cli
+    pushl $13
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq14:
+    cli
+    pushl $14
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
+
+irq15:
+    cli
+    pushl $15
+    call irq_handler
+    add $4, %esp
+    sti
+    iret
