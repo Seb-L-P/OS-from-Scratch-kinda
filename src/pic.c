@@ -32,8 +32,8 @@ void pic_remap(uint8_t offset1, uint8_t offset2) {
     outb(PIC2_DATA, ICW4_8086);
 
     // For now: enable only IRQ0 (timer) on master, disable all on slave
-    outb(PIC1_DATA, 0xFE); // 1111 1110  -> only IRQ0 unmasked
-    outb(PIC2_DATA, 0xFF); // all masked
+    outb(PIC1_DATA, 0xFC); // 1111 1100  -> only IRQ0 unmasked
+    outb(PIC2_DATA, 0xFF); // all masked on slave PIC
 }
 
 void pic_send_eoi(uint8_t irq) {

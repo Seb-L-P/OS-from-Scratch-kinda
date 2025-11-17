@@ -24,11 +24,11 @@ void pit_on_tick(void) {
     pit_ticks++;
 
     // For demo: print every 100 ticks
-    if (pit_ticks % 100 == 0) {
-        vga_set_color(VGA_COLOR_LIGHT_CYAN, VGA_COLOR_BLACK);
-        vga_write("Ticks: ");
-        vga_write_uint(pit_ticks);
-        vga_write_line("");
-        vga_set_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
-    }
+    // if (pit_ticks % 100 == 0) {
+    //     vga_set_color(VGA_COLOR_LIGHT_CYAN, VGA_COLOR_BLACK);
+    //     vga_write("Ticks: ");
+    //     vga_write_uint(pit_ticks);
+    //     vga_write_line("");
+    //     vga_set_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
+    // }
 }
