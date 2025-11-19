@@ -34,8 +34,7 @@ void vga_clear(void);
 void vga_put_char(char c);
 void vga_write(const char* str);
 void vga_write_line(const char* str);
-
-// Tiny helper to print unsigned ints (for debugging)
 void vga_write_uint(uint32_t value);
+void vga_write_hex32(uint32_t value);
 
 #endif

@@ -24,12 +24,14 @@ $CC $CFLAGS -c src/irq.c    -o irq.o
 $CC $CFLAGS -c src/pit.c    -o pit.o
 $CC $CFLAGS -c src/keyboard.c -o keyboard.o
 $CC $CFLAGS -c src/gdt.c    -o gdt.o
+$CC $CFLAGS -c src/memory.c    -o memory.o
+$CC $CFLAGS -c src/pmm.c    -o pmm.o
 
 
 # Link kernel
 $LD -m elf_i386 -T linker.ld -o kernel.bin \
     boot.o interrupts.o gdt_asm.o \
-    kernel.o vga.o idt.o isr.o pic.o irq.o pit.o gdt.o keyboard.o
+    kernel.o vga.o idt.o isr.o pic.o irq.o pit.o gdt.o keyboard.o memory.o pmm.o
 
 # Prepare ISO + GRUB
 mkdir -p iso/boot/grub

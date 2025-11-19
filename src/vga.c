@@ -101,3 +101,17 @@ void vga_write_uint(uint32_t value) {
         vga_put_char(buf[j]);
     }
 }
+
+void vga_write_hex32(uint32_t value) {
+    vga_write("0x");
+    for (int i = 7; i >= 0; i--) {
+        uint8_t nibble = (value >> (i * 4)) & 0xF;
+        char c;
+        if (nibble < 10) {
+            c = '0' + nibble;
+        } else {
+            c = 'A' + (nibble - 10);
+        }
+        vga_put_char(c);
+    }
+}

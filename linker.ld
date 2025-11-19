@@ -1,11 +1,17 @@
 ENTRY(_start)
 
-SECTIONS {
+SECTIONS
+{
     . = 1M;
+    _kernel_start = .;
 
     .text : {
         *(.multiboot)
         *(.text*)
+    }
+
+    .rodata : {
+        *(.rodata*)
     }
 
     .data : {
@@ -13,7 +19,10 @@ SECTIONS {
     }
 
     .bss : {
-        *(COMMON)
         *(.bss*)
+        *(COMMON)
     }
+
+    _kernel_end = .;
 }
+

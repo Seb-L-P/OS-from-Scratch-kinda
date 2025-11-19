@@ -17,13 +17,19 @@
     .extern kernel_main     # kernel_main will be defined in C
 
 _start:
-    cli                     # disable interrupts for now
+    cli
 
-    # Set up stack pointer (esp) to point to stack_top
-    lea stack_top, %esp
+    # GRUB provides:
+    #   eax = multiboot magic
+    #   ebx = address of multiboot_info_t
+    # We want: kernel_main(uint32_t magic, uint32_t mb_info_addr)
 
-    # Call into C code
+    lea stack_top, %esp      # set up our stack
+
+    push %ebx                # 2nd argument: mb_info_addr
+    push %eax                # 1st argument: magic
     call kernel_main
+
 
 .hang:
     hlt                     # halt CPU
